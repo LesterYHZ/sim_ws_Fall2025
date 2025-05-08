@@ -23,9 +23,8 @@ class GazeboModelHandler(Node):
         while not self.set_state_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Set state service not available, waiting again...')
         
-        self.spawn_model('red_object','red_object')
-        self.spawn_model('blue_object','blue_object')
-        self.spawn_model('green_object','green_object')
+        self.spawn_model('obstacle0','trash_can')
+        self.spawn_model('obstacle1','trash_can')
 
         self.timer = self.create_timer(0.1, self.timer_callback)
         self.elapsed = 0
