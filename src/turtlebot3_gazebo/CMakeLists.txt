@@ -67,6 +67,12 @@ install(
   DESTINATION lib/${PROJECT_NAME}
   RENAME spawn_objects
 )
+install(
+  PROGRAMS
+    src/lab4/task2_bonus.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME task2_bonus
+)
 
 
 ################################################################################

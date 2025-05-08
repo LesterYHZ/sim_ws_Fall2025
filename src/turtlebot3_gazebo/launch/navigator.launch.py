@@ -5,14 +5,15 @@ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from ament_index_python.packages import get_package_share_directory
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch.conditions import IfCondition, UnlessCondition
+
 
 
 def generate_launch_description():
     # Set the directory paths
     package_dir = get_package_share_directory('turtlebot3_gazebo')
-    map_file_path = os.path.join(package_dir, 'maps', 'map.yaml')
+    map_file_path = os.path.join(package_dir, 'maps', 'sync_classroom_map.yaml')
 
     # Declare launch arguments
     return LaunchDescription([
@@ -37,8 +38,13 @@ def generate_launch_description():
             description='Whether to enable static obstacles'
         ),
         DeclareLaunchArgument(
+            'bonus',
+            default_value='false',
+            description='Launches task2_bonus'
+        ),
+        DeclareLaunchArgument(
             'spawn_objects',
-            default_value='true',
+            default_value='false',
             description='Whether to spawn objects'
         ),
 
@@ -108,8 +114,36 @@ def generate_launch_description():
             parameters=[{
                 'use_sim_time': LaunchConfiguration('use_sim_time')
             }],
-            condition=IfCondition(LaunchConfiguration('static_obstacles'))
+             condition=IfCondition(
+                PythonExpression([
+                    "'",
+                    LaunchConfiguration('static_obstacles'),
+                    "' == 'true' and '",
+                    LaunchConfiguration('bonus'),
+                    "' == 'false'"
+                ])
+            )
         ),
+
+        Node(
+            package='turtlebot3_gazebo',
+            executable='task2_bonus',
+            name='task2bonus_algorithm',
+            output='screen',
+            parameters=[{
+                'use_sim_time': LaunchConfiguration('use_sim_time')
+            }],
+            condition=IfCondition(
+                PythonExpression([
+                    "'",
+                    LaunchConfiguration('static_obstacles'),
+                    "' == 'true' and '",
+                    LaunchConfiguration('bonus'),
+                    "' == 'true'"
+                ])
+            )
+        ),
+
 
         # Task3 Algorithm Node (for dynamic obstacles)
         Node(
