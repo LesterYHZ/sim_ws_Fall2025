@@ -108,7 +108,7 @@ def generate_launch_description():
         # Task2 Algorithm Node
         Node(
             package='turtlebot3_gazebo',
-            executable='task2.py',
+            executable='task2',
             name='task2_algorithm',
             output='screen',
             parameters=[{
@@ -148,7 +148,7 @@ def generate_launch_description():
         # Task3 Algorithm Node (for dynamic obstacles)
         Node(
             package='turtlebot3_gazebo',
-            executable='task3.py',
+            executable='task3',
             name='task3_algorithm',
             output='screen',
             parameters=[{

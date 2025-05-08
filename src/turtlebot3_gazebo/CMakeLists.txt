@@ -56,9 +56,20 @@ install(DIRECTORY launch models rviz urdf worlds maps params
 install(
   PROGRAMS
     src/lab4/task1.py
+    DESTINATION lib/${PROJECT_NAME}
+    RENAME task1
+)
+install(
+  PROGRAMS
     src/lab4/task2.py
+    DESTINATION lib/${PROJECT_NAME}
+    RENAME task2
+)
+install(
+  PROGRAMS
     src/lab4/task3.py
     DESTINATION lib/${PROJECT_NAME}
+    RENAME task3
 )
 install(
   PROGRAMS
