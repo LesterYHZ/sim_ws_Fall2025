@@ -58,8 +58,7 @@ install(
     src/lab4/task1.py
     src/lab4/task2.py
     src/lab4/task3.py
-    src/lab4/static_obstacles.py
-  DESTINATION lib/${PROJECT_NAME}
+    DESTINATION lib/${PROJECT_NAME}
 )
 install(
   PROGRAMS
@@ -74,6 +73,12 @@ install(
   RENAME task2_bonus
 )
 
+install(
+  PROGRAMS
+    src/lab4/static_obstacles.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME static_obstacles
+)
 
 ################################################################################
 # Macro for ament package
