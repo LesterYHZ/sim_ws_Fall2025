@@ -23,23 +23,23 @@ class GazeboModelHandler(Node):
         while not self.set_state_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Set state service not available, waiting again...')
         
-        self.spawn_model('red_object',0.3)
-        self.spawn_model('blue_object',0.7)
-        self.spawn_model('green_object',1.5)
+        # self.spawn_model('obstacle0','trash_can')
+        self.spawn_model('obstacle1','trash_can')
+        self.spawn_model('cricket_ball','cricket_ball')
 
         self.timer = self.create_timer(0.1, self.timer_callback)
         self.elapsed = 0
 
-    def spawn_model(self, model_name, offset):
+    def spawn_model(self, model_name, model):
         
         initial_pose = Pose()
-        initial_pose.position.x = 0.5
-        initial_pose.position.y = 0.5+offset
-        initial_pose.position.z = 0.1
+        initial_pose.position.x = 0.0
+        initial_pose.position.y = 0.0
+        initial_pose.position.z = 1.0
 
         request = SpawnEntity.Request()
         request.name = model_name
-        request.xml = self.load_model_xml_from_sdf(model_name)
+        request.xml = self.load_model_xml_from_sdf(model)
         request.reference_frame = 'world'
         request.initial_pose = initial_pose
 
@@ -65,13 +65,14 @@ class GazeboModelHandler(Node):
     
     def timer_callback(self):
         t = self.elapsed
-        y0 = -3.0
-        y1 = -0.7
-        y2 = -5.0
-        
-        self.set_model_position(-5.0, y0, 'red_object')
-        self.set_model_position(7.0, y1, 'blue_object')
-        self.set_model_position(8.0,y2,'green_object')
+        y0 = 0.5
+        y1 = -0.45
+        y2 = -2.0
+
+        # self.set_model_position(-5.0, y0, 'obstacle0')
+        self.set_model_position(6.0, y1, 'obstacle1')
+        self.set_model_position(-4.95, y2, 'cricket_ball')
+
         self.elapsed = (self.elapsed + 1) % 201  # Increment and reset after reaching 200
 
     def set_model_position(self, x, y, model_name):

@@ -71,6 +71,14 @@ def generate_launch_description():
             condition=IfCondition(LaunchConfiguration('spawn_objects'))
         ),
 
+        Node(
+            package='turtlebot3_gazebo',
+            executable='static_obstacles_task3',
+            name='static_obstacles_task3',
+            output='screen',
+            condition=IfCondition(LaunchConfiguration('spawn_objects'))
+        ),
+
         # Map Server Node
         Node(
             package='nav2_map_server',

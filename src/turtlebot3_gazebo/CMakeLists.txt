@@ -91,6 +91,13 @@ install(
   RENAME static_obstacles
 )
 
+install(
+  PROGRAMS
+    src/lab4/static_obstacles_task3.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME static_obstacles_task3
+)
+
 ################################################################################
 # Macro for ament package
 ################################################################################

@@ -5,7 +5,7 @@
 
   # Geometry
 
-  d = 0.075
+  d = 0.3
   r = d/2
 
   # Inertia
@@ -48,14 +48,14 @@
         <material>
           <script>
             <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Red</name>
+            <name>Gazebo/Orange</name>
           </script>
         </material>
       </visual>
 
       <!-- approximate rolling friction -->
       <velocity_decay>
-        <linear>0.00</linear>
+        <linear>0.90</linear>
         <angular>0.005</angular>
       </velocity_decay>
     </link>
