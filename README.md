@@ -1,5 +1,5 @@
 # ME597 sim_ws
-A simulation workspace bulit for ME597 final project. 
+A simulation workspace bulit for ME597 final project in Fall 2025. 
 
 ## Instructions:
 1. Simply save this workspace e.g., 
