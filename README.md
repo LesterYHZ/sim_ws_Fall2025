@@ -1,4 +1,6 @@
 # ME597 sim_ws
+A simulation workspace bulit for ME597 final project. 
+
 ## Instructions:
 1. Simply save this workspace e.g., 
     ```
